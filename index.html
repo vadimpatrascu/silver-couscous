@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Mentor Academy - Scara Evoluției</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        ladder: {
+                            red: '#ef4444',      // Nu voi face asta
+                            orange: '#f97316',   // Nu voi putea face asta
+                            yellow: '#eab308',   // Vreau sa fac asta
+                            lightgreen: '#84cc16', // Cum pot face asta?
+                            green: '#22c55e',    // Voi incerca...
+                            lightblue: '#38bdf8', // O pot face!
+                            blue: '#3b82f6',     // O sa il fac eu!
+                            purple: '#a855f7',   // Este atat de simplu!
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #ef4444, #eab308, #22c55e, #3b82f6, #a855f7);
+        }
+
+        /* Step Card Styling */
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Quiz Styles */
+        .quiz-option {
+            transition: all 0.2s;
+        }
+        .quiz-option:hover {
+            transform: translateX(5px);
+            border-color: #4f46e5;
+        }
+        .quiz-option.selected {
+            background-color: #eef2ff;
+            border-color: #4f46e5;
+            color: #312e81;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800 font-sans leading-relaxed">
+
+    <!-- Navbar -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm fixed w-full z-50 transition-all">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <span class="text-3xl">🚀</span>
+                <span>Premium<span class="text-gradient font-extrabold">Mentor Academy</span></span>
+            </a>
+            <a href="#inscriere" class="hidden md:inline-block bg-gradient-to-r from-ladder-blue to-ladder-purple hover:from-ladder-blue hover:to-purple-700 text-white font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                Programează Apelul Gratuit
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden relative">
+        <!-- Background Gradient based on the ladder -->
+        <div class="absolute inset-0 bg-gradient-to-br from-red-50 via-yellow-50 to-blue-50 opacity-70 -z-10"></div>
+        
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- Text Content -->
+                <div class="md:w-1/2 fade-in-up">
+                    <span class="inline-block py-1 px-4 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-semibold mb-6 shadow-sm">
+                        Dezvoltare Personală & Profesională
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        Afacerea de Coaching nu este pentru oricine, dar <br>
+                        <span class="text-gradient">Tu pe ce treaptă ești?</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 border-l-4 border-ladder-purple pl-4">
+                        Majoritatea oamenilor se opresc la "Nu voi putea face asta". Descoperă cum să urci până la "Este atât de simplu!".
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#quiz-section" class="px-8 py-4 bg-white text-gray-800 border-2 border-gray-100 font-bold rounded-xl hover:border-ladder-purple hover:text-ladder-purple transition shadow-sm text-center">
+                            Fă Testul de Nivel
+                        </a>
+                        <a href="#inscriere" class="px-8 py-4 bg-gradient-to-r from-ladder-blue to-ladder-purple text-white font-bold rounded-xl hover:shadow-xl hover:scale-105 transition transform text-center shadow-lg">
+                            Începe Ascensiunea
+                        </a>
+                    </div>
+                </div>
+                <!-- Image Content with Ladder Branding -->
+                <div class="md:w-1/2 w-full flex justify-center relative">
+                    <!-- Colored Blob Backgrounds -->
+                    <div class="absolute top-10 right-10 w-64 h-64 bg-ladder-purple opacity-20 blur-3xl rounded-full"></div>
+                    <div class="absolute bottom-10 left-10 w-64 h-64 bg-ladder-yellow opacity-20 blur-3xl rounded-full"></div>
+                    
+                    <!-- The Provided Image -->
+                    <div class="relative z-10 p-2 bg-white rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition duration-500">
+                        <img src="image_e7edf7.jpg" alt="Scara evoluției în coaching" class="rounded-xl w-full max-w-md h-auto object-cover" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Scara+Evolutiei'">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg hidden md:block animate-bounce">
+                            <span class="text-2xl font-bold text-ladder-purple">Level Up! ⬆️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Potential Section -->
+    <section class="py-20 bg-gray-900 text-white relative overflow-hidden">
+        <!-- Colorful ambient lights -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-ladder-purple opacity-30 blur-[100px]"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-ladder-blue opacity-30 blur-[100px]"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h3 class="text-3xl md:text-5xl font-bold mb-8">Potențial Neexploatat</h3>
+            <div class="inline-block p-1 rounded-2xl bg-gradient-to-r from-ladder-red via-ladder-yellow to-ladder-purple mb-8">
+                <div class="bg-gray-900 rounded-xl px-8 py-4">
+                    <p class="text-lg md:text-3xl font-light">
+                        "Doar <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 font-bold text-4xl">1%</span> din Potențialul acestei ramuri se realizează în România."
+                    </p>
+                </div>
+            </div>
+            <p class="text-gray-300 mb-10 text-lg max-w-2xl mx-auto">
+                Testul de mai jos te va ajuta să înțelegi dacă faci parte din acest 1% sau ce te reține.
+            </p>
+        </div>
+    </section>
+
+    <!-- NEW QUIZ SECTION -->
+    <section id="quiz-section" class="py-24 bg-gradient-to-b from-gray-50 to-white relative">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12">
+                <span class="text-ladder-purple font-bold tracking-widest text-sm uppercase">Autoevaluare</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Pe ce treaptă a evoluției te afli?</h2>
+                <p class="text-gray-600 mt-4">Răspunde sincer la cele 8 întrebări pentru a identifica blocajele și oportunitățile tale.</p>
+            </div>
+
+            <!-- Quiz Container -->
+            <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden" id="quiz-container">
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-100 h-2">
+                    <div class="bg-gradient-to-r from-ladder-red to-ladder-purple h-2 transition-all duration-500" style="width: 0%" id="progress-bar"></div>
+                </div>
+
+                <div class="p-8 md:p-12">
+                    <!-- Question Area -->
+                    <div id="question-area">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-8" id="question-text">Se încarcă întrebarea...</h3>
+                        <div class="space-y-4" id="answers-container">
+                            <!-- Answers will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Result Area (Hidden initially) -->
+                    <div id="result-area" class="hidden text-center fade-in-up">
+                        <div class="mb-6">
+                            <span class="text-gray-500 text-lg">Te afli pe treapta:</span>
+                            <h2 class="text-4xl md:text-5xl font-extrabold mt-2 mb-4" id="result-title">TITLU REZULTAT</h2>
+                            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8" id="result-desc">Descrierea rezultatului va apărea aici.</p>
+                            
+                            <div class="p-6 bg-gray-50 rounded-xl border border-gray-200 mb-8">
+                                <h4 class="font-bold text-gray-900 mb-2">Recomandarea noastră:</h4>
+                                <p id="result-advice" class="text-gray-700 italic">Sfat personalizat...</p>
+                            </div>
+                        </div>
+                        <a href="https://calendly.com/vadimpatrascu/discoverycall" target="_blank" class="inline-block bg-gradient-to-r from-ladder-blue to-ladder-purple hover:from-blue-600 hover:to-purple-800 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-xl text-lg animate-pulse-slow">
+                            Treci la nivelul următor (Apel Gratuit)
+                        </a>
+                        <button onclick="resetQuiz()" class="block mx-auto mt-6 text-gray-500 hover:text-gray-800 underline">Refă testul</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 25 Points Section Condensed -->
+    <section id="scara-evolutiei" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ce înseamnă să urci scara?</h2>
+                <p class="text-gray-600">Iată cum arată evoluția în detaliu, pas cu pas.</p>
+            </div>
+
+            <div class="space-y-8 max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-ladder-red shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-ladder-red text-lg mb-2">Nivelul de bază</h4>
+                        <p class="text-sm text-gray-600">Conștientizarea valorii, învățarea pașilor de lansare, crearea conexiunilor și cunoașterea unor oameni noi.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-ladder-yellow shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-ladder-yellow text-lg mb-2">Nivelul de Pregătire</h4>
+                        <p class="text-sm text-gray-600">Adoptarea unui mindset de învingător, încredere în sine, crearea unui produs valoros și înțelegerea marketingului.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-ladder-green shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-ladder-green text-lg mb-2">Nivelul de Acțiune</h4>
+                        <p class="text-sm text-gray-600">Prioritizare acțiunilor, înfruntarea provocărilor cu curaj, călătorii mai dese și adoptarea unui nou lifestyle.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-ladder-purple shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-ladder-purple text-lg mb-2">Nivelul de Excelență</h4>
+                        <p class="text-sm text-gray-600">Impact real, leadership, comunicare autentică, strategie clară, diferențiere pe piață și atragerea clienților ideali.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                     <p class="text-gray-500 text-sm">Lista completă de 25 de puncte esențiale este inclusă în detaliu în programul nostru de mentorat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualification Section (Who is this for) -->
+    <section id="inscriere" class="py-24 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900">Ești pregătit?</h2>
+                <p class="text-gray-600 mt-4 text-lg">Analizează cu onestitate criteriile de calificare.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Yes Column -->
+                <div class="bg-gradient-to-b from-green-50 to-white p-10 rounded-3xl shadow-xl border border-green-100 relative overflow-hidden group hover:border-green-300 transition">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-ladder-green"></div>
+                    <div class="flex items-center mb-8">
+                        <div class="bg-green-100 p-4 rounded-2xl mr-4 group-hover:bg-green-200 transition">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">ÎNSCRIE-TE DACĂ:</h3>
+                    </div>
+                    <ul class="space-y-6 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-6 h-6 mr-3 bg-green-500 text-white rounded-full text-xs shrink-0">✓</span>
+                            <span class="text-lg">Ești super hotărât/ă să faci tranziția de la consumator pasiv la <strong>Prestator Activ de Servicii Digitale</strong>.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-6 h-6 mr-3 bg-green-500 text-white rounded-full text-xs shrink-0">✓</span>
+                            <span class="text-lg">Vrei să oferi servicii precum: coaching, curs online, mentorat, training etc.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- No Column -->
+                <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden opacity-90 hover:opacity-100 transition">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-ladder-red"></div>
+                    <div class="flex items-center mb-8">
+                        <div class="bg-red-50 p-4 rounded-2xl mr-4">
+                            <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">NU TE ÎNSCRIE DACĂ:</h3>
+                    </div>
+                    <ul class="space-y-6 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-6 h-6 mr-3 bg-red-100 text-red-500 rounded-full text-xs shrink-0">✕</span>
+                            <span class="text-lg">Consideri că Piața Online de Coaching și Cursuri Online este suprasaturată.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="inline-flex items-center justify-center w-6 h-6 mr-3 bg-red-100 text-red-500 rounded-full text-xs shrink-0">✕</span>
+                            <span class="text-lg">Crezi că nu este posibil să câștigi de la 2000€-5000€/lunar în Coaching.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- CTA Area -->
+            <div class="mt-20 text-center fade-in-up">
+                <div class="p-1 rounded-2xl bg-gradient-to-r from-ladder-blue via-ladder-purple to-pink-500 inline-block">
+                    <a href="https://calendly.com/vadimpatrascu/discoverycall" target="_blank" class="block bg-white hover:bg-gray-50 text-gray-900 text-xl font-bold py-6 px-12 rounded-xl transition duration-300">
+                        🗓️ Programează Apelul Gratuit Acum
+                    </a>
+                </div>
+                <p class="mt-6 text-gray-500">Locuri limitate pentru anul 2026.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-2xl font-bold text-white tracking-tighter">Premium<span class="text-ladder-blue">Mentor Academy</span></span>
+                <p class="mt-2 text-sm text-gray-500">Transformă-ți pasiunea în profesie.</p>
+            </div>
+            <div class="text-sm">
+                <p>&copy; 2026 Premium Mentor Academy. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- QUIZ LOGIC -->
+    <script>
+        const questions = [
+            {
+                text: "Când te gândești să începi (sau să scalezi) o afacere de coaching, care este primul gând care îți vine în minte?",
+                answers: [
+                    { text: "Nu cred că e pentru mine, e prea complicat.", score: 1 },
+                    { text: "Mi-ar plăcea, dar nu cred că am suficiente cunoștințe.", score: 2 },
+                    { text: "Vreau să fac asta, simt că am ceva de oferit.", score: 3 },
+                    { text: "Știu că pot, doar caut strategia potrivită.", score: 5 }
+                ]
+            },
+            {
+                text: "Care este relația ta actuală cu expunerea publică (social media, video)?",
+                answers: [
+                    { text: "Refuz categoric să apar video.", score: 1 },
+                    { text: "Mi-e frică de ce vor zice alții, așa că evit.", score: 2 },
+                    { text: "Mă simt inconfortabil, dar înțeleg că e necesar.", score: 4 },
+                    { text: "Postez cu încredere și autenticitate.", score: 6 }
+                ]
+            },
+            {
+                text: "Cum reacționezi când întâmpini o problemă tehnică (ex: creare site, setare reclame)?",
+                answers: [
+                    { text: "Renunț. Nu mă pricep la tehnologie.", score: 1 },
+                    { text: "Mă blochez și procrastinez.", score: 2 },
+                    { text: "Caut pe Google 'cum pot face asta'.", score: 4 },
+                    { text: "Rezolv singur sau deleg imediat. E simplu.", score: 6 }
+                ]
+            },
+            {
+                text: "Cât de des acționezi concret pentru visul tău?",
+                answers: [
+                    { text: "Deloc. Doar visez.", score: 1 },
+                    { text: "Rar, când am timp și chef.", score: 3 },
+                    { text: "Încerc săptămânal, dar nu sunt constant.", score: 5 },
+                    { text: "Zilnic. Am o disciplină clară.", score: 7 }
+                ]
+            },
+            {
+                text: "Ce părere ai despre vânzări și a cere bani pe serviciile tale?",
+                answers: [
+                    { text: "Nu pot cere bani, mi-e rușine.", score: 2 },
+                    { text: "Vreau să vând, dar nu știu cum să nu par 'disperat'.", score: 3 },
+                    { text: "Am un preț, dar îl negociez des în jos.", score: 5 },
+                    { text: "Știu valoarea mea și o comunic cu încredere.", score: 7 }
+                ]
+            },
+            {
+                text: "Când vezi alți coachi de succes, ce simți?",
+                answers: [
+                    { text: "Invidie. Sigur au avut noroc.", score: 1 },
+                    { text: "Descurajare. Piața e deja plină.", score: 2 },
+                    { text: "Curiozitate. Ce fac ei și pot face și eu?", score: 4 },
+                    { text: "Inspirație. Dacă ei au putut, și eu pot!", score: 6 }
+                ]
+            },
+            {
+                text: "Dacă ai avea strategia completă mâine, ce ai face?",
+                answers: [
+                    { text: "Aș găsi probabil alte motive să amân.", score: 1 },
+                    { text: "Aș încerca, dar cu frică de eșec.", score: 3 },
+                    { text: "Aș pune-o în aplicare imediat.", score: 6 },
+                    { text: "Aș adapta-o stilului meu și aș scala.", score: 8 }
+                ]
+            },
+            {
+                text: "Cum definești eșecul?",
+                answers: [
+                    { text: "Dovada că nu sunt bun de nimic.", score: 1 },
+                    { text: "Un motiv să mă opresc.", score: 2 },
+                    { text: "O lecție din care învăț cum să fac mai bine.", score: 5 },
+                    { text: "Parte naturală din procesul spre succes.", score: 7 }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let totalScore = 0;
+
+        // Grab elements
+        const questionText = document.getElementById('question-text');
+        const answersContainer = document.getElementById('answers-container');
+        const progressBar = document.getElementById('progress-bar');
+        const questionArea = document.getElementById('question-area');
+        const resultArea = document.getElementById('result-area');
+
+        // Results mapped to colors and texts from the image
+        function getResult(score) {
+            // Max score possible: approx 52
+            // Scale:
+            // 8-12: Nu voi face asta (Red)
+            // 13-20: Nu voi putea face asta (Orange)
+            // 21-28: Vreau sa fac asta (Yellow)
+            // 29-35: Cum pot face asta? (Light Green)
+            // 36-42: Voi incerca... (Green)
+            // 43-48: O pot face! (Light Blue)
+            // 49-51: O sa il fac eu! (Dark Blue)
+            // 52+: Este atat de simplu! (Purple)
+
+            if (score <= 12) return {
+                title: "Nu voi face asta",
+                color: "text-[#ef4444]", // Red
+                desc: "Te afli într-o zonă de negare sau rezistență majoră. Frica îți dictează deciziile în acest moment.",
+                advice: "Ai nevoie urgentă de o schimbare de mindset. Dacă nu acționezi, vei rămâne în același punct și peste 5 ani."
+            };
+            if (score <= 20) return {
+                title: "Nu voi putea face asta",
+                color: "text-[#f97316]", // Orange
+                desc: "Te îndoiești de capacitățile tale. Crezi că alții pot, dar tu nu.",
+                advice: "Acesta este sindromul impostorului. Ai nevoie de un mentor care să îți arate că și tu ai resursele necesare."
+            };
+            if (score <= 28) return {
+                title: "Vreau sa fac asta",
+                color: "text-[#eab308]", // Yellow
+                desc: "Dorința există, intenția este setată, dar lipsește planul concret.",
+                advice: "Ești în punctul critic. Transformă 'vreau' în acțiune. Ai nevoie de claritate și structură."
+            };
+            if (score <= 35) return {
+                title: "Cum pot face asta?",
+                color: "text-[#84cc16]", // Light Green
+                desc: "Ai trecut la faza de curiozitate și căutare de soluții. Ești pregătit să înveți.",
+                advice: "Este momentul perfect pentru a accesa o strategie validată. Nu mai încerca să reinventezi roata."
+            };
+            if (score <= 40) return {
+                title: "Voi încerca...",
+                color: "text-[#22c55e]", // Green
+                desc: "Ai început să faci pași timizi. Ești dispus să testezi apele.",
+                advice: "'A încerca' lasă loc de eșec. Asumă-ți angajamentul total. Ai nevoie de curaj pentru a accelera."
+            };
+            if (score <= 46) return {
+                title: "O pot face!",
+                color: "text-[#38bdf8]", // Light Blue
+                desc: "Încrederea ta a crescut considerabil. Începi să vezi posibilitățile reale.",
+                advice: "Ești gata de lansare. Ai nevoie doar de un mic impuls pentru a transforma potențialul în profit."
+            };
+            if (score <= 50) return {
+                title: "O să îl fac eu!",
+                color: "text-[#3b82f6]", // Dark Blue
+                desc: "Ți-ai asumat responsabilitatea. Ești determinat și gata de muncă serioasă.",
+                advice: "Felicitări! Ești profilul ideal pentru succes. Acum ai nevoie de scalare și optimizare."
+            };
+            return {
+                title: "Este atât de simplu!",
+                color: "text-[#a855f7]", // Purple
+                desc: "Ai atins starea de flow și măiestrie. Vezi clar drumul și obstacolele par mici.",
+                advice: "Ești în acel 1%. E momentul să ne ajuți să îi ridicăm și pe ceilalți sau să îți scalezi imperiul."
+            };
+        }
+
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            questionText.innerText = currentQuestion.text;
+            answersContainer.innerHTML = '';
+
+            // Update progress bar
+            const progress = ((currentQuestionIndex) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            currentQuestion.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.className = 'quiz-option w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition duration-200 text-gray-700 font-medium';
+                button.innerText = answer.text;
+                button.onclick = () => selectAnswer(answer.score);
+                answersContainer.appendChild(button);
+            });
+        }
+
+        function selectAnswer(score) {
+            totalScore += score;
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            progressBar.style.width = '100%';
+            questionArea.classList.add('hidden');
+            resultArea.classList.remove('hidden');
+
+            const result = getResult(totalScore);
+            
+            const resultTitle = document.getElementById('result-title');
+            const resultDesc = document.getElementById('result-desc');
+            const resultAdvice = document.getElementById('result-advice');
+
+            resultTitle.innerText = `"${result.title}"`;
+            resultTitle.className = `text-4xl md:text-5xl font-extrabold mt-2 mb-4 ${result.color}`;
+            
+            resultDesc.innerText = result.desc;
+            resultAdvice.innerText = result.advice;
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            totalScore = 0;
+            questionArea.classList.remove('hidden');
+            resultArea.classList.add('hidden');
+            loadQuestion();
+        }
+
+        // Initialize quiz on load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuestion();
+        });
+    </script>
+</body>
+</html>
